@@ -31,6 +31,8 @@ setMethod(
     # Zero-coupon curve extraction 
     ZC <- .Object@ZCRates #ZCRates[1]=0,ZCRates[2]=R(0,1/12),...
     n <- length(ZC)
+    
+    T <- T/12
         
     # If T is not a multiple of 1/12, then the price is linearly interpolated
     int_un_douze <- floor(T)+seq(from = 0, to = 1, by = 1/12)
@@ -55,6 +57,8 @@ setMethod(
       {
         P0T <- exp(-ZC[12*T]*T)
       }
+    
+    T <- T * 12
     
     if (t == 0) 
     {
